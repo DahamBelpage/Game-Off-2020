@@ -5,7 +5,6 @@ using UnityEngine;
 public class Patrol : MonoBehaviour
 {
     public float speed;
-    public float damage = 10f;
 
     private bool movingRight = true;
 
@@ -20,10 +19,13 @@ public class Patrol : MonoBehaviour
         
         RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, Vector2.right, visionDis);
         Player player = hitInfo.transform.GetComponent<Player>();
+        Debug.Log("Check");
         if(player != null){
+            Debug.Log("YES");
             Instantiate(enemyBullet, firePoint.position, firePoint.rotation);
         }
         else{
+            Debug.Log("Good");
             transform.Translate(Vector2.right * speed * Time.deltaTime);
             RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, rayDis);
             if(groundInfo.collider == false){
@@ -31,11 +33,11 @@ public class Patrol : MonoBehaviour
                     transform.eulerAngles = new Vector3(0, -180, 0);
                     movingRight = false;
                 }
-                else {
+                else{
                     transform.eulerAngles = new Vector3(0, 0, 0);
                     movingRight = true;
                 }
-        }
+            }
         }
     }
 }
