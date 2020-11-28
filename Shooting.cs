@@ -8,7 +8,7 @@ public class Shooting : MonoBehaviour
     public GameObject bulletPrefab;
 
     private void Update() {
-        if(Input.GetButtonDown("Fire2")){
+        if(Input.GetKeyDown(KeyCode.UpArrow)){
             Shoot();
         }
     }
